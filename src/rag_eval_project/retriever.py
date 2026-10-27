@@ -58,7 +58,7 @@ def load_transcripts():
 # 2. BUILD — embed chunks and persist the vector store
 def load_store():
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
+       model_name = "BAAI/bge-base-en-v1.5",
         model_kwargs={"device": "cpu"},
         encode_kwargs={"normalize_embeddings": True},
     )
