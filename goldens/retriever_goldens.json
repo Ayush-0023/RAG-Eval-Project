@@ -58,5 +58,35 @@
     "query": "what exactly does recall at k tell me about my retriever?",
     "ideal_answer": "Recall@k tells you, out of all the correct relevant documents that exist for a query, how many the retriever actually retrieved in its top-k results. For example, if there are two correct documents for a question and the retriever fetches only one of them, the recall is 1 out of 2, or 50%. Recall is always between 0 and 100%, and ideally should be 100%. To get the overall recall@k on your dataset, you compute recall per question and then average across all questions. This tells you how successful your retriever is at fetching the relevant documents.",
     "source": "Session 3"
+  },
+  {
+    "id": "g011",
+    "query": "What are the three levels at which an LLM application should be evaluated, and why is evaluating individual components alone insufficient?",
+    "ideal_answer": "An LLM application should be evaluated at three levels: component level, pipeline or workflow level, and application or system level. Component-level evaluation checks individual parts, such as the retriever or generator, in isolation. Pipeline-level evaluation checks whether the components work correctly together. Application-level evaluation checks the complete user-facing system, including overall quality and operational behavior. Individual components can pass their evaluations while the combined pipeline still fails, so evaluation must cover all three levels.",
+    "source": "Session 2"
+  },
+  {
+    "id": "g012",
+    "query": "Which safety risks should be evaluated in a RAG chatbot, beyond whether its answers are correct and relevant?",
+    "ideal_answer": "Safety evaluation should check whether the chatbot produces toxic responses, reveals personally identifiable information, or can be manipulated through jailbreak attempts. These checks are part of application-level evaluation and complement quality checks such as answer correctness, faithfulness, and relevance.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g013",
+    "query": "Which operational metrics should be monitored when evaluating an LLM application in production?",
+    "ideal_answer": "Operational evaluation should monitor application latency, cost per query, and token usage. Latency measures how long the application takes to respond, cost tracks the expense of serving queries, and token usage helps explain and monitor that expense. The time until the first token is produced can also be tracked as an application-level performance measure.",
+    "source": "Session 2"
+  },
+  {
+    "id": "g014",
+    "query": "How can an evaluation suite be used as a release gate in a CI/CD pipeline?",
+    "ideal_answer": "An evaluation suite can run automatically when code changes are pushed and trigger a CI workflow, such as through GitHub Actions. The evaluation score is compared with a predefined threshold. If the score meets the required threshold, the deployment pipeline can proceed; if it falls below the threshold, deployment is blocked and the team is notified. This makes evaluation an automated pre-release check and can help prevent a worse version from being deployed.",
+    "source": "Session 3"
+  },
+  {
+    "id": "g015",
+    "query": "What is an evaluation baseline, and how does experiment tracking help when improving a RAG system?",
+    "ideal_answer": "A baseline is the set of evaluation measurements obtained from an initial run of the application using a particular configuration. The configuration and its metric results can be logged in an experiment-tracking tool such as MLflow. After changing settings such as chunk size or overlap, the team runs the evaluation again and compares the new metrics with the baseline. This helps determine whether a change improved or degraded the system and supports regression testing.",
+    "source": "Session 8"
   }
 ]
