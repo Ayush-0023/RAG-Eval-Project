@@ -116,6 +116,31 @@ def generate(query: str, context: list[str]) -> str:
         "context": context_text,
     })
 
+def generate_stream(query: str, context: list[str]):
+    """Stream a grounded answer chunk by chunk using the same prompt and LLM."""
+    if not query.strip():
+        raise ValueError("Query must not be empty.")
+
+    context_text = "\n\n".join(
+        chunk for chunk in context if chunk and chunk.strip()
+    )
+
+    if not context_text:
+        yield (
+            "I don't have enough information in the course material "
+            "to answer that."
+        )
+        return
+
+    messages = prompt.format_messages(
+        question=query,
+        context=context_text,
+    )
+
+    for chunk in llm.stream(messages):
+        if chunk.content:
+            yield chunk.content
+
 
 if __name__ == "__main__":
     context = [
